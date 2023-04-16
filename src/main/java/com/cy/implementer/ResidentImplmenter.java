@@ -8,17 +8,11 @@ import com.cy.pojo.Resident;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Wrapper;
 import java.util.List;
 
 @Service
 public class ResidentImplmenter {
     @Autowired public ResidentMapper residentMapper;
-    public ResidentImplmenter(){
-        if (residentMapper==null){
-            System.out.println("FUck\n");
-        }
-    }
 
     public List<Resident> selectAgeLessThan (int age){
         QueryWrapper<Resident> wrapper= new QueryWrapper<>();
