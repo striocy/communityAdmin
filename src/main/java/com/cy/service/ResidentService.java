@@ -1,5 +1,6 @@
 package com.cy.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cy.implementer.ResidentImplmenter;
@@ -30,4 +31,21 @@ public class ResidentService {
         IPage<Resident> test=residentImplmenter.residentMapper.selectPage(page,null);
         return test.getRecords();
     }
+    public boolean update(Resident resident){
+        QueryWrapper<Resident> wrapper=new QueryWrapper<>();
+        wrapper.eq("id",resident.getId());
+        int res=this.residentImplmenter.residentMapper.update(resident,wrapper);
+        if(res==1) return true;
+        return false;
+    }
+    public List<Resident> listByAgeGreaterThan(int age){
+        return this.residentImplmenter.selectAgeGreaterThan(age);
+    }
+    public List<Resident> listByAgeLessThan(int age){
+        return this.residentImplmenter.selectAgeLessThan(age);
+    }
+    public List<Resident> listByNameLike(String name){return this.residentImplmenter.selectNameLike(name);}
+    public Resident getById(String id){return this.residentImplmenter.residentMapper.selectById(id);}
+    public List<Resident> listByAddrLike(String addr){return this.residentImplmenter.selectAddressLike(addr);}
+
 }

@@ -29,7 +29,7 @@ public class ResidentImplmenter {
         wrapper.like("address",address);
         return residentMapper.selectList(wrapper);
     }
-    public List<Resident> selectAgeGreateThan(int age){
+    public List<Resident> selectAgeGreaterThan(int age){
         QueryWrapper<Resident> wrapper=new QueryWrapper<>();
         wrapper.ge("age",age);
         return residentMapper.selectList(wrapper);

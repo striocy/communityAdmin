@@ -111,4 +111,10 @@
         </resources>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>localRepository</id>
+        </repository>
+    </distributionManagement>
+
 </project>

@@ -32,7 +32,6 @@ public class HealthInfoImplementer {
         return healthInfoMapper.selectList(wrapper);
     }
     public List<HealthInfo> selectTimeBetween(Date start,Date end){
-        System.out.println(start+"\n"+end);
         QueryWrapper<HealthInfo> wrapper=new QueryWrapper<>();
         wrapper.between("submit_time",start,end);
         return healthInfoMapper.selectList(wrapper);

@@ -2,6 +2,7 @@ package com.cy.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Date;
@@ -10,9 +11,9 @@ import java.sql.Date;
 @NoArgsConstructor
 @TableName("device_data")
 public class DeviceData {
-    @TableId private int deviceId;
+    @MppMultiId private Integer deviceId;    //smallint(5)
     private String  location;
     private DeviceType type;
     private String details;
-    private Date dataTime;
+    @MppMultiId private Date dataTime;
 }
