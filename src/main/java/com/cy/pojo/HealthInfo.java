@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +16,7 @@ import java.sql.Date;
 public class HealthInfo {
 
     @MppMultiId private String id;
-    @MppMultiId  private Date submitTime;
+    @MppMultiId  private Timestamp submitTime;
     private String name;
     private int temprature;
     private int bloodPressure;

@@ -47,5 +47,16 @@ public class ResidentService {
     public List<Resident> listByNameLike(String name){return this.residentImplmenter.selectNameLike(name);}
     public Resident getById(String id){return this.residentImplmenter.residentMapper.selectById(id);}
     public List<Resident> listByAddrLike(String addr){return this.residentImplmenter.selectAddressLike(addr);}
-
+    public List<Resident> listSorted(int page,int n,int ascend,String column,String name,String address,Integer age){
+        Page<Resident> pages=new Page<>(page,n);
+        QueryWrapper<Resident> wrapper=new QueryWrapper<>();
+        if (ascend==1)
+            wrapper.orderByAsc(column);
+        else wrapper.orderByDesc(column);
+        wrapper.like("name",name);
+        wrapper.like("address",address);
+        wrapper.ge("age",age);
+        IPage<Resident> test=residentImplmenter.residentMapper.selectPage(pages,wrapper);
+        return test.getRecords();
+    }
 }

@@ -16,5 +16,5 @@ public class Patient {
     private String name;
     private Gender gender;
     @TableField("contact_time") private Timestamp time;
-    private String contactPlace;
+    private String hospital;
 }

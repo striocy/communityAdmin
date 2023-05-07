@@ -15,7 +15,7 @@ public class ResidentController {
     ResidentService residentService;
 
     @PostMapping("insert")
-    public int residentInsert(Resident resident) throws ValueInvalidException{
+    public int residentInsert(@RequestBody Resident resident) throws ValueInvalidException{
         if (resident==null)
             throw new ValueInvalidException("object","对象为空");
         else {
@@ -33,7 +33,7 @@ public class ResidentController {
         return 201;
     }
     @PostMapping("update")
-    public int update(Resident resident){
+    public int update(@RequestBody Resident resident){
         if(resident==null){
             System.out.println("Resident object is null");
             return 404;}
@@ -56,5 +56,12 @@ public class ResidentController {
     public List<Resident>listByAddr(String addr){return this.residentService.listByAddrLike(addr);}
     @GetMapping("getbyid")
     public Resident getById(String id){return this.residentService.getById(id);
+    }
+    @GetMapping("listsorted")
+    public List<Resident> listSorted(@RequestParam int page,@RequestParam int limit,@RequestParam int ascend,
+                                     @RequestParam String column,@RequestParam String name,
+                                     @RequestParam String address,@RequestParam Integer age) throws ValueInvalidException{
+        if (page<0) throw new ValueInvalidException("page","page值非法");
+        return this.residentService.listSorted(page, limit, ascend, column,name,address,age);
     }
 }

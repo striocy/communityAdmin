@@ -1,6 +1,8 @@
 package com.cy.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cy.implementer.PatientImplementer;
 import com.cy.pojo.Gender;
 import com.cy.pojo.Patient;
@@ -32,5 +34,17 @@ public class PatientService {
         if (this.patientImplementer.patientMapper.insert(patient)==1)
             return true;
         return false;
+    }
+    public List<Patient> select(String name,String hospital,Timestamp time, int page,int n,int ascend,String column){
+        Page<Patient> pages=new Page<>(page,n);
+        QueryWrapper<Patient> wrapper=new QueryWrapper<>();
+        if (ascend==1)
+            wrapper.orderByAsc(column);
+        else wrapper.orderByDesc(column);
+        wrapper.like("name",name);
+        wrapper.like("hospital",hospital);
+        wrapper.ge("contact_time",time);
+        IPage<Patient> test=this.patientImplementer.patientMapper.selectPage(pages,wrapper);
+        return test.getRecords();
     }
 }

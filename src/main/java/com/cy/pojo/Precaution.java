@@ -12,7 +12,8 @@ import java.sql.Timestamp;
 @TableName("precaution")
 public class Precaution {
     @MppMultiId private String id;
-    @MppMultiId private Timestamp asseseTime;
+    @MppMultiId private Timestamp assessTime;
+    private String name;
     private SafetyGrade grade;
     private String suggestion;
 }
